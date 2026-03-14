@@ -44,6 +44,7 @@ export interface CustomNodeData extends Record<string, unknown> {
   isHighlighted: boolean;
   searchScore?: number;
   isSelected: boolean;
+  isTourHighlighted: boolean;
 }
 
 export type CustomFlowNode = Node<CustomNodeData, "custom">;
@@ -58,6 +59,8 @@ export default function CustomNode({
   let ringClass = "";
   if (data.isSelected) {
     ringClass = "ring-2 ring-white";
+  } else if (data.isTourHighlighted) {
+    ringClass = "ring-2 ring-blue-400 animate-pulse";
   } else if (data.isHighlighted) {
     const score = data.searchScore ?? 1;
     if (score <= 0.1) {

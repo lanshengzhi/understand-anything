@@ -26,6 +26,7 @@ export default function GraphView() {
   const searchResults = useDashboardStore((s) => s.searchResults);
   const selectNode = useDashboardStore((s) => s.selectNode);
   const showLayers = useDashboardStore((s) => s.showLayers);
+  const tourHighlightedNodeIds = useDashboardStore((s) => s.tourHighlightedNodeIds);
 
   const { initialNodes, initialEdges } = useMemo(() => {
     if (!graph)
@@ -48,6 +49,7 @@ export default function GraphView() {
           isHighlighted: !!matchResult,
           searchScore: matchResult?.score,
           isSelected: selectedNodeId === node.id,
+          isTourHighlighted: tourHighlightedNodeIds.includes(node.id),
         },
       };
     });
@@ -162,7 +164,7 @@ export default function GraphView() {
     ];
 
     return { initialNodes: allNodes, initialEdges: laid.edges };
-  }, [graph, searchResults, selectedNodeId, showLayers]);
+  }, [graph, searchResults, selectedNodeId, showLayers, tourHighlightedNodeIds]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
