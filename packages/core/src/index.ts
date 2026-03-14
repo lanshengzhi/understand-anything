@@ -35,3 +35,4 @@ export {
   detectLanguageConcepts,
   type LanguageLessonResult,
 } from "./analyzer/language-lesson.js";
+export { PluginRegistry } from "./plugins/registry.js";
