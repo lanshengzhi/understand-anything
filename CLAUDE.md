@@ -51,7 +51,12 @@ An open-source tool combining LLM intelligence + static analysis to produce inte
 - **tree-sitter**: Uses `web-tree-sitter` (WASM) instead of native `tree-sitter` — native bindings fail on darwin/arm64 + Node 24
 - **Dashboard imports**: Dashboard must only import from core's browser-safe subpath exports (`./search`, `./types`, `./schema`), never the main entry point which pulls in Node.js modules
 
+## Scripts
+- `scripts/generate-large-graph.mjs` — Generates a fake knowledge graph for performance testing (e.g. large-graph layout). Writes to `.understand-anything/knowledge-graph.json`. Usage: `node scripts/generate-large-graph.mjs [nodeCount]` (default: 3000 nodes). Not part of the production pipeline.
+
 ## Versioning
-When pushing to remote, bump the version in **both** of these files (keep them in sync):
+When pushing to remote, bump the version in **all four** of these files (keep them in sync):
 - `understand-anything-plugin/package.json` → `"version"` field
 - `.claude-plugin/marketplace.json` → `plugins[0].version` field
+- `.claude-plugin/plugin.json` → `"version"` field
+- `.cursor-plugin/plugin.json` → `"version"` field
